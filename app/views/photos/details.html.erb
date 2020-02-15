@@ -1,0 +1,85 @@
+<h1>Photo Details</h1>
+
+<dl>
+  <dt>Image</dt>
+  <dd>
+    <img src="<%= @photo.image %>">
+  </dd>
+
+  <dt>Caption</dt>
+  <dd>
+    <p><%= @photo.caption %></p>
+  </dd>
+
+  <dt>Owner</dt>
+  <dd>
+    <%= @photo.poster.username %>
+  </dd>
+
+  <dt>Posted</dt>
+  <dd>
+    2 months ago
+  </dd>
+
+  <dt>Edit photo</dt>
+  <dd>
+    <form action="/update_photo/<%= @photo.id %>">
+      <label for="browser_image">Image</label>
+      <input id="browser_image" type="text" name="input_image" placeholder="Enter a URL for the image..." value="<%= @photo.image %>">
+
+      <label for="browser_caption">Caption</label>
+      <textarea id="browser_caption" name="input_caption" placeholder="Enter a caption for the photo..."><%= @photo.caption %></textarea>
+
+      <button>Update photo</button>
+    </form>
+  </dd>
+
+  <dt>Delete photo</dt>
+  <dd>
+    <a href="/delete_photo/<%= @photo.id %>;">
+      Delete this photo
+    </a>
+  </dd>
+</dl>
+
+<h2>Comments</h2>
+
+<table>
+  <tr>
+    <th>Commenter</th>
+    <th>Comment</th>
+    <th>Posted</th>
+  </tr>
+
+  <% @photo.comments.each do |comment| %>
+  <tr>
+    <td>
+      <%= comment.commenter.username %>
+    </td>
+
+    <td>
+      <%= comment.body %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(comment.created_at) %>
+    </td>
+  </tr>
+  
+  <% end %>
+</table>
+
+<h3>Add a new comment</h3>
+
+<form action="/insert_comment_record" method="post">
+  <label for="browser_photo_id">Photo ID</label>
+  <input id="browser_photo_id" type="text" value="<%= @photo.id %>" name="input_photo_id">
+
+  <label for="browser_author_id">Author ID</label>
+  <input id="browser_author_id" type="text" name="input_author_id">
+
+  <label for="browser_comment">Comment</label>
+  <textarea id="browser_comment" name="input_body" placeholder="Enter a comment..."></textarea>
+
+  <button>Add comment</button>
+</form>
