@@ -1,4 +1,4 @@
-image: jelaniwoods/appdev2021-photogram-signin:winter
+image: jelaniwoods/appdev2021-photogram-signin@sha256:34a4d4d8e779e869242b584e94b5a772920e8353e46643d4c525612ac849dabe
 
 tasks:
   - init: bin/setup
