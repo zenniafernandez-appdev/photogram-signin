@@ -1,15 +1,16 @@
-image: jelaniwoods/appdev2021-photogram-signin@sha256:6fe2ff5e5dbd84731930bbe2d7fc9dce3a633d9c916b549c318157468333088a
+image: patrickmckernin/photogram-signin-2022-winter
 
 tasks:
-  - command: bundle install
   - init: bin/setup
 ports:
   - port: 3000
     onOpen: open-preview
-    visibility: public
+  - port: 9515
+    onOpen: ignore
+
 
 vscode:
   extensions:
-    - shd101wyy.markdown-preview-enhanced
-    - wingrunr21.vscode-ruby
-   
+    - vortizhe.simple-ruby-erb
+    - mbessey.vscode-rufo
+    - aliariff.vscode-erb-beautify
