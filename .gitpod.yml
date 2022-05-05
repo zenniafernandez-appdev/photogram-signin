@@ -1,11 +1,12 @@
-image: patrickmckernin/photogram-signin-2022-winter
+image: patrickmckernin/photogram-signin-2022-spring
 
 tasks:
-  - init: bin/setup
+  - before: |
+      bin/setup
 ports:
   - port: 3000
     onOpen: open-preview
-  - port: 9515
+  - port: 9500-9999
     onOpen: ignore
 
 

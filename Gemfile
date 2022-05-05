@@ -53,7 +53,7 @@ group :development do
   gem 'annotate'
   gem 'better_errors', '2.6'
   gem 'binding_of_caller'
-  gem 'draft_generators', github: 'firstdraft/draft_generators', branch: 'winter-2020'
+  gem 'draft_generators', github: 'firstdraft/draft_generators'
   gem 'rails_db', '2.3.1'
   gem 'rufo'
   gem 'htmlbeautifier'
