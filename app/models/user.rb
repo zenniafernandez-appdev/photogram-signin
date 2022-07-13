@@ -33,13 +33,13 @@ class User < ApplicationRecord
   end
 
   def liked_photos
-    array_of_photo_ids = self.likes.pluck(:photo_id)
+    array_of_photo_ids = self.likes.map_relation_to_array(:photo_id)
 
     return Photo.where({ :id => array_of_photo_ids })
   end
 
   def commented_photos
-    array_of_photo_ids = self.comments.pluck(:photo_id)
+    array_of_photo_ids = self.comments.map_relation_to_array(:photo_id)
 
     return Photo.where({ :id => array_of_photo_ids }).distinct
   end
@@ -61,29 +61,29 @@ class User < ApplicationRecord
   end
 
   def followers
-    array_of_follower_ids = self.accepted_received_follow_requests.pluck(:sender_id)
+    array_of_follower_ids = self.accepted_received_follow_requests.map_relation_to_array(:sender_id)
 
     return User.where({ :id => array_of_follower_ids })
   end
 
   def following
-    array_of_leader_ids = self.accepted_sent_follow_requests.pluck(:recipient_id)
+    array_of_leader_ids = self.accepted_sent_follow_requests.map_relation_to_array(:recipient_id)
 
     return User.where({ :id => array_of_leader_ids })
   end
 
   def feed
-    array_of_leader_ids = self.accepted_sent_follow_requests.pluck(:recipient_id)
+    array_of_leader_ids = self.accepted_sent_follow_requests.map_relation_to_array(:recipient_id)
 
     return Photo.where({ :owner_id => array_of_leader_ids })
   end
 
   def discover
-    array_of_leader_ids = self.accepted_sent_follow_requests.pluck(:recipient_id)
+    array_of_leader_ids = self.accepted_sent_follow_requests.map_relation_to_array(:recipient_id)
 
     all_leader_likes = Like.where({ :fan_id => array_of_leader_ids })
 
-    array_of_discover_photo_ids = all_leader_likes.pluck(:photo_id)
+    array_of_discover_photo_ids = all_leader_likes.map_relation_to_array(:photo_id)
 
     return Photo.where({ :id => array_of_discover_photo_ids })
   end

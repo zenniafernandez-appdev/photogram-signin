@@ -29,12 +29,12 @@ class Photo < ApplicationRecord
   end
 
   def fans
-    array_of_user_ids = self.likes.pluck(:fan_id)
+    array_of_user_ids = self.likes.map_relation_to_array(:fan_id)
 
     return User.where({ :id => array_of_user_ids })
   end
 
   def fan_list
-    return self.fans.pluck(:username).to_sentence
+    return self.fans.map_relation_to_array(:username).to_sentence
   end
 end
