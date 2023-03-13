@@ -4,6 +4,14 @@ Rails.application.routes.draw do
 
   # User routes
 
+  get("/user_sign_up", { :controller => "users", :action => "new_registration_form" })
+
+  get("/user_sign_in", { :controller => "users", :action => "begin_user_session" })
+
+  get("/user_sign_out", { :controller => "users", :action => "end_user_session" })
+
+  post("/verify_credentials", { :controller => "users", :action => "authenticate" })
+
   # CREATE
   get("/insert_user_record", {:controller => "users", :action => "create" })
 
